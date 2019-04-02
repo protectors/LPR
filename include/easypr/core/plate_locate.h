@@ -14,7 +14,7 @@
 #ifndef EASYPR_CORE_PLATELOCATE_H_
 #define EASYPR_CORE_PLATELOCATE_H_
 
-#include "include/easypr/core/plate.hpp"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate.hpp"
 
 /*! \namespace easypr
     Namespace where all the C++ EasyPR functionality resides

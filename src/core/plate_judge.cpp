@@ -1,7 +1,7 @@
-#include "include/easypr/core/plate_judge.h"
-#include "include/easypr/config.h"
-#include "include/easypr/core/core_func.h"
-#include "include/easypr/core/params.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate_judge.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\core_func.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\params.h"
 
 namespace easypr {
 

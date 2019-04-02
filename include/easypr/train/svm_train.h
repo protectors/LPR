@@ -1,10 +1,10 @@
 #ifndef EASYPR_TRAIN_SVMTRAIN_H_
 #define EASYPR_TRAIN_SVMTRAIN_H_
 
-#include "include/easypr/train/train.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\train\\train.h"
 #include <vector>
-#include "include/easypr/config.h"
-#include "include/easypr/core/feature.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core/feature.h"
 
 namespace easypr {
 

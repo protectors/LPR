@@ -11,8 +11,8 @@
 #define EASYPR_CORE_PLATE_H_
 
 #include "opencv2/opencv.hpp"
-#include "include/easypr/core/character.hpp"
-#include "include/easypr/config.h"
+#include "Z:/test/Easy_LPR/include/easypr/core/character.hpp"
+#include "Z:/test/Easy_LPR/include/easypr/config.h"
 
 using namespace cv;
 

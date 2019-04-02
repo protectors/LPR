@@ -1,7 +1,7 @@
-#include "include/easypr/core/plate_detect.h"
-#include "include/easypr/util/util.h"
-#include "include/easypr/core/core_func.h"
-#include "include/easypr/config.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate_detect.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\util\\util.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\core_func.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
 
 namespace easypr {
 

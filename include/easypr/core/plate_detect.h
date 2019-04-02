@@ -1,8 +1,8 @@
 #ifndef EASYPR_CORE_PLATEDETECT_H_
 #define EASYPR_CORE_PLATEDETECT_H_
 
-#include "include/easypr/core/plate_locate.h"
-#include "include/easypr/core/plate_judge.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate_locate.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate_judge.h"
 
 namespace easypr {
 

@@ -4,9 +4,9 @@
 #include <memory>
 #include "opencv2/opencv.hpp"
 
-#include "include/easypr/util/kv.h"
-#include "include/easypr/core/character.hpp"
-#include "include/easypr/core/feature.h"
+#include "Z:/test/Easy_LPR/include/easypr/util/kv.h"
+#include "Z:/test/Easy_LPR/include/easypr/core/character.hpp"
+#include "Z:/test/Easy_LPR/include/easypr/core/feature.h"
 
 namespace easypr {
 

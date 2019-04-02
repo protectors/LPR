@@ -2,7 +2,7 @@
 #define EASYPR_CORE_CHARSSEGMENT_H_
 
 #include "opencv2/opencv.hpp"
-#include "include/easypr/config.h"
+#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
 
 using namespace cv;
 using namespace std;
