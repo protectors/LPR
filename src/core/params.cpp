@@ -1,4 +1,4 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\params.h"
+#include "include/easypr/core/params.h"
 
 namespace easypr {
   CParams* CParams::instance_ = nullptr;

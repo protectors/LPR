@@ -1,8 +1,8 @@
 #ifndef EASYPR_TRAIN_ANNTRAIN_H_
 #define EASYPR_TRAIN_ANNTRAIN_H_
 
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\train\\train.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util\\kv.h"
+#include "include/easypr/train/train.h"
+#include "include/easypr/util/kv.h"
 #include <memory>
 
 namespace easypr {

@@ -1,8 +1,8 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\core_func.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate.hpp"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\chars_identify.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\params.h"
+#include "include/easypr/core/core_func.h"
+#include "include/easypr/core/plate.hpp"
+#include "include/easypr/core/chars_identify.h"
+#include "include/easypr/config.h"
+#include "include/easypr/core/params.h"
 #include "thirdparty/mser/mser2.hpp"
 #include <ctime>
 

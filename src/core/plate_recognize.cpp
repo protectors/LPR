@@ -1,5 +1,5 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate_recognize.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
+#include "include/easypr/core/plate_recognize.h"
+#include "include/easypr/config.h"
 #include "thirdparty/textDetect/erfilter.hpp"
 
 namespace easypr {

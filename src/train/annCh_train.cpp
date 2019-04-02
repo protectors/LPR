@@ -1,13 +1,13 @@
 #include <numeric>
 #include <ctime>
 
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\train\\annCh_train.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\chars_identify.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\feature.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\core_func.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util\\util.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\train\\create_data.h"
+#include "include/easypr/train/annCh_train.h"
+#include "include/easypr/config.h"
+#include "include/easypr/core/chars_identify.h"
+#include "include/easypr/core/feature.h"
+#include "include/easypr/core/core_func.h"
+#include "include/easypr/util/util.h"
+#include "include/easypr/train/create_data.h"
 
 namespace easypr {
 

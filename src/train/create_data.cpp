@@ -1,4 +1,4 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\train\\create_data.h"
+#include "include/easypr/train/create_data.h"
 
 namespace easypr {
 
