@@ -12,8 +12,8 @@
 #ifndef EASYPR_CORE_PLATERECOGNIZE_H_
 #define EASYPR_CORE_PLATERECOGNIZE_H_
 
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate_detect.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\chars_recognise.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/plate_detect.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/chars_recognise.h"
 
 /*! \namespace easypr
 Namespace where all the C++ EasyPR functionality resides

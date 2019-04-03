@@ -1,6 +1,6 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\train\\svm_train.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util\\util.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/train/svm_train.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/util/util.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/config.h"
 
 #ifdef OS_WINDOWS
 #include <ctime>

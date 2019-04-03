@@ -1,11 +1,11 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util/util.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/util/util.h"
 #include <string>
 
 #ifdef OS_WINDOWS
 #include <windows.h>
 #include <direct.h>
 #include <io.h>
-#define PATH_DELIMITER '\\'
+#define PATH_DELIMITER '/'
 #ifdef min
 #undef min
 #endif
@@ -271,15 +271,15 @@ std::string Utils::utf8_to_gbk(const char* utf8) {
 
 std::size_t Utils::get_last_slash(const std::string &path) {
 #ifdef OS_WINDOWS
-  size_t last_slash_1 = path.find_last_of("\\");
+  size_t last_slash_1 = path.find_last_of("/");
   size_t last_slash_2 = path.find_last_of("/");
   size_t last_slash;
 
   if (last_slash_1 != std::string::npos && last_slash_2 != std::string::npos) {
-    // C:/path\\to/file.postfix
+    // C:/path/to/file.postfix
     last_slash = std::max(last_slash_1, last_slash_2);
   } else {
-    // C:\\path\\to\\file.postfix
+    // C:/path/to/file.postfix
     // C:/path/to/file.postfix
     last_slash =
         (last_slash_1 == std::string::npos) ? last_slash_2 : last_slash_1;

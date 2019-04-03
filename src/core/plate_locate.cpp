@@ -1,7 +1,7 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate_locate.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\core_func.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util\\util.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\params.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/plate_locate.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/core_func.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/util/util.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/params.h"
 
 using namespace std;
 

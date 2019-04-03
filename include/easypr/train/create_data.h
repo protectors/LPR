@@ -2,7 +2,7 @@
 #define EASYPR_CREATE_DATA_H_
 
 #include "opencv2/opencv.hpp"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/config.h"
 
 using namespace cv;
 using namespace std;

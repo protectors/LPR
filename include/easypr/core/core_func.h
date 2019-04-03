@@ -2,8 +2,8 @@
 #define EASYPR_CORE_COREFUNC_H_
 
 #include "opencv2/opencv.hpp"
-#include "Z:/test/Easy_LPR/include/easypr/core/plate.hpp"
-#include "Z:/test/Easy_LPR/include/easypr/core/character.hpp"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/plate.hpp"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/character.hpp"
 
 using namespace cv;
 using namespace std;

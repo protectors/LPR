@@ -1,9 +1,9 @@
-#include "Z:/test/Easy_LPR/include/easypr/core/chars_identify.h"
-#include "Z:/test/Easy_LPR/include/easypr/core/character.hpp"
-#include "Z:/test/Easy_LPR/include/easypr/core/core_func.h"
-#include "Z:/test/Easy_LPR/include/easypr/core/feature.h"
-#include "Z:/test/Easy_LPR/include/easypr/core/params.h"
-#include "Z:/test/Easy_LPR/include/easypr/config.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/chars_identify.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/character.hpp"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/core_func.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/feature.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/params.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/config.h"
 
 using namespace cv;
 

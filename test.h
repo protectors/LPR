@@ -1,6 +1,7 @@
 #ifndef TEST_H
 #define TEST_H
 
+#pragma comment(lib,"Qt5Widgetsd.lib")
 #include <QMainWindow>
 #include <QTimer>
 #include <QTime>
@@ -11,7 +12,7 @@
 #include <QDateTime>
 #include "logolabel.h"
 #include <QFileDialog>
-#include <qfile>
+#include <QFile>
 #include <QDebug>
 #include <QIODevice>
 #include <QApplication>

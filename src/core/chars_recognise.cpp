@@ -1,6 +1,6 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\chars_recognise.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\character.hpp"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util/util.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/chars_recognise.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/character.hpp"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/util/util.h"
 #include <ctime>
 
 namespace easypr {

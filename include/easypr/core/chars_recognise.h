@@ -12,12 +12,12 @@
 #ifndef EASYPR_CORE_CHARSRECOGNISE_H_
 #define EASYPR_CORE_CHARSRECOGNISE_H_
 
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\chars_segment.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\chars_identify.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\core_func.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util\\util.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\core\\plate.hpp"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\config.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/chars_segment.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/chars_identify.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/core_func.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/util/util.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/core/plate.hpp"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/config.h"
 
 namespace easypr {
 

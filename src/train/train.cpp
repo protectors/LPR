@@ -1,4 +1,4 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\train\\train.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/train/train.h"
 
 namespace easypr {
 

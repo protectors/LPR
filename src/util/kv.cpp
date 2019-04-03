@@ -1,5 +1,5 @@
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util\\kv.h"
-#include "Z:\\test\\Easy_LPR\\include\\easypr\\util\\util.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/util/kv.h"
+#include "/Users/zhangfeng/slns/LPR/include/easypr/util/util.h"
 
 namespace easypr {
 
