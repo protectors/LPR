@@ -1,7 +1,7 @@
 #ifndef EASYPR_CORE_CHARSIDENTIFY_H_
 #define EASYPR_CORE_CHARSIDENTIFY_H_
 
-#include <memory>
+//#include <memory>
 #include "opencv2/opencv.hpp"
 
 #include "/Users/zhangfeng/slns/LPR/include/easypr/util/kv.h"

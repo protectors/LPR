@@ -23,97 +23,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    src/core/chars_identify.cpp \
-    src/core/chars_recognise.cpp \
-    src/core/chars_segment.cpp \
-    src/core/core_func.cpp \
-    src/core/feature.cpp \
-    src/core/params.cpp \
-    src/core/plate_detect.cpp \
-    src/core/plate_judge.cpp \
-    src/core/plate_locate.cpp \
-    src/core/plate_recognize.cpp \
-    src/train/ann_train.cpp \
-    src/train/annCh_train.cpp \
-    src/train/create_data.cpp \
-    src/train/svm_train.cpp \
-    src/train/train.cpp \
-    src/util/kv.cpp \
-    src/util/program_options.cpp \
-    src/util/util.cpp \
-    thirdparty/LBP/helper.cpp \
-    thirdparty/LBP/lbp.cpp \
-    thirdparty/mser/mser2.cpp \
-    thirdparty/svm/corrected_svm.cpp \
-    thirdparty/textDetect/erfilter.cpp \
-    thirdparty/xmlParser/xmlParser.cpp \
-    logolabel.cpp \
-    tool.cpp \
-    selectwindow.cpp \
-    test.cpp \
-    showpr.cpp
+QMAKE_CXXFLAGS += -std=c++11
 
-HEADERS += \
-        mainwindow.h \
-    include/easypr/core/character.hpp \
-    include/easypr/core/chars_identify.h \
-    include/easypr/core/chars_recognise.h \
-    include/easypr/core/chars_segment.h \
-    include/easypr/core/core_func.h \
-    include/easypr/core/feature.h \
-    include/easypr/core/params.h \
-    include/easypr/core/plate.hpp \
-    include/easypr/core/plate_detect.h \
-    include/easypr/core/plate_judge.h \
-    include/easypr/core/plate_locate.h \
-    include/easypr/core/plate_recognize.h \
-    include/easypr/train/ann_train.h \
-    include/easypr/train/annCh_train.h \
-    include/easypr/train/create_data.h \
-    include/easypr/train/svm_train.h \
-    include/easypr/train/train.h \
-    include/easypr/util/kv.h \
-    include/easypr/util/program_options.h \
-    include/easypr/util/switch.hpp \
-    include/easypr/util/util.h \
-    include/easypr/api.hpp \
-    include/easypr/config.h \
-    include/easypr/version.h \
-    include/easypr.h \
-    test/accuracy.hpp \
-    test/chars.hpp \
-    test/config.hpp \
-    test/plate.hpp \
-    test/result.hpp \
-    thirdparty/LBP/helper.hpp \
-    thirdparty/LBP/lbp.hpp \
-    thirdparty/mser/mser2.hpp \
-    thirdparty/svm/precomp.hpp \
-    thirdparty/textDetect/erfilter.hpp \
-    thirdparty/xmlParser/xmlParser.h \
-    logolabel.h \
-    tool.h \
-    selectwindow.h \
-    test.h \
-    showpr.h
 
-FORMS += \
-        mainwindow.ui \
-    selectwindow.ui \
-    test.ui \
-    showpr.ui
 
-#INCLUDEPATH+=Z:\QT\Tools\opencv\include\opencv\
-#             Z:\QT\Tools\opencv\include\opencv2\
-#             Z:\QT\Tools\opencv\include
-
-#LIBS+= Z:\QT\Tools\opencv\lib\libopencv_*.a
+INCLUDEPATH += /usr/local/Cellar/eigen/3.3.7/include/eigen3
+INCLUDEPATH += /usr/local/include
+INCLUDEPATH += /usr/local/include/opencv
+INCLUDEPATH += /usr/local/include/opencv2
+LIBS += -L/usr/local/Cellar/opencv/3.4.0/build/lib \
+    -lopencv_core \
+    -lopencv_highgui \
+    -lopencv_imgproc \
+    -lopencv_imgcodecs \
+    -lopencv_ml \
+    -lopencv_video \
+    -lopencv_features2d \
+    -lopencv_calib3d \
+    -lopencv_objdetect \
+    -lopencv_flann \
+    -lopencv_photo \
+    -lopencv_stitching \
+    -lopencv_superres \
+    -lopencv_videostab \
+    -lopencv_shape
 
 SUBDIRS += \
     LPR.pro
+
+RESOURCES += \
+    photograph.qrc
 
 DISTFILES += \
     resources/train/ann.7z \
@@ -129,6 +68,8 @@ DISTFILES += \
     resources/image/native_test/GroundTruth_others.xml \
     resources/image/native_test/GroundTruth_windows.xml \
     resources/result/Result.xml \
+    pictures/bg1.jpg \
+    pictures/bg4.jpg \
     resources/doc/res/13ver.jpg \
     resources/doc/res/arch.jpg \
     resources/doc/res/batch_operation.jpg \
@@ -415,14 +356,49 @@ DISTFILES += \
     resources/image/general_test/黑A16341.jpg \
     resources/image/general_test/黑A1R272.jpg \
     resources/image/general_test/黑AB4444.jpg \
+    resources/image/5.jpg \
+    resources/image/6.jpg \
+    resources/image/aodi.jpg \
     resources/image/chars_identify.jpg \
     resources/image/chars_recognise.jpg \
     resources/image/chars_segment.jpg \
+    resources/image/night_2.jpg \
     resources/image/plate_detect.jpg \
     resources/image/plate_judge.jpg \
     resources/image/plate_locate.jpg \
     resources/image/plate_recognize.jpg \
     resources/image/test.jpg \
+    resources/image/timg.jpg \
+    resources/image/timg1.jpg \
+    resources/image/timg78H3K1QR.jpg \
+    resources/image/timgP7QPDZRZ.jpg \
+    resources/image/timgVL0D36PE.jpg \
+    resources/image/timgXBMCM0C0.jpg \
+    resources/image/timgXR4GWZHT.jpg \
+    resources/image/xianga.jpg \
+    plate_detect.jpg \
+    pictures/back_off.png \
+    pictures/back_off_s.png \
+    pictures/back_on.png \
+    pictures/back_on_s.png \
+    pictures/bg1.png \
+    pictures/clear_off.png \
+    pictures/clear_on.png \
+    pictures/close_off.png \
+    pictures/close_on.png \
+    pictures/go_off.png \
+    pictures/go_on.png \
+    pictures/image_off.png \
+    pictures/image_on.png \
+    pictures/l_off.png \
+    pictures/l_on.png \
+    pictures/ldbg.png \
+    pictures/r_off.png \
+    pictures/r_on.png \
+    pictures/sm_n.png \
+    pictures/sm_s.png \
+    pictures/start_off.png \
+    pictures/start_on.png \
     resources/doc/res/batch_result.png \
     resources/doc/res/bigangle.png \
     resources/doc/res/blue_chars.png \
@@ -451,17 +427,87 @@ DISTFILES += \
     resources/text/test_menu \
     resources/text/train_menu
 
-QMAKE_CXXFLAGS += -std=c++11
+FORMS += \
+    mainwindow.ui \
+    selectwindow.ui \
+    showpr.ui \
+    test.ui
 
-RESOURCES += \
-    photograph.qrc
+HEADERS += \
+    include/easypr/core/character.hpp \
+    include/easypr/core/chars_identify.h \
+    include/easypr/core/chars_recognise.h \
+    include/easypr/core/chars_segment.h \
+    include/easypr/core/core_func.h \
+    include/easypr/core/feature.h \
+    include/easypr/core/params.h \
+    include/easypr/core/plate.hpp \
+    include/easypr/core/plate_detect.h \
+    include/easypr/core/plate_judge.h \
+    include/easypr/core/plate_locate.h \
+    include/easypr/core/plate_recognize.h \
+    include/easypr/train/ann_train.h \
+    include/easypr/train/annCh_train.h \
+    include/easypr/train/create_data.h \
+    include/easypr/train/svm_train.h \
+    include/easypr/train/train.h \
+    include/easypr/util/kv.h \
+    include/easypr/util/program_options.h \
+    include/easypr/util/switch.hpp \
+    include/easypr/util/util.h \
+    include/easypr/api.hpp \
+    include/easypr/config.h \
+    include/easypr/version.h \
+    include/easypr.h \
+    test/accuracy.hpp \
+    test/chars.hpp \
+    test/config.hpp \
+    test/plate.hpp \
+    test/result.hpp \
+    thirdparty/LBP/helper.hpp \
+    thirdparty/LBP/lbp.hpp \
+    thirdparty/mser/mser2.hpp \
+    thirdparty/svm/precomp.hpp \
+    thirdparty/textDetect/erfilter.hpp \
+    thirdparty/xmlParser/xmlParser.h \
+    thirdparty/xmlParser/AFPL-license.txt \
+    logolabel.h \
+    mainwindow.h \
+    selectwindow.h \
+    showpr.h \
+    test.h \
+    tool.h
 
-INCLUDEPATH += /usr/local/Cellar/eigen/3.3.7/include/eigen3
-INCLUDEPATH += /usr/local/include
-INCLUDEPATH += /usr/local/include/opencv
-INCLUDEPATH += /usr/local/include/opencv2
-LIBS += -L/usr/local/lib \
- -lopencv_core \
- -lopencv_highgui \
- -lopencv_imgproc \
-  -lopencv_imgcodecs \
+SOURCES += \
+    src/core/chars_identify.cpp \
+    src/core/chars_recognise.cpp \
+    src/core/chars_segment.cpp \
+    src/core/core_func.cpp \
+    src/core/feature.cpp \
+    src/core/params.cpp \
+    src/core/plate_detect.cpp \
+    src/core/plate_judge.cpp \
+    src/core/plate_locate.cpp \
+    src/core/plate_recognize.cpp \
+    src/train/ann_train.cpp \
+    src/train/annCh_train.cpp \
+    src/train/create_data.cpp \
+    src/train/svm_train.cpp \
+    src/train/train.cpp \
+    src/util/kv.cpp \
+    src/util/program_options.cpp \
+    src/util/util.cpp \
+    thirdparty/LBP/helper.cpp \
+    thirdparty/LBP/lbp.cpp \
+    thirdparty/mser/mser2.cpp \
+    thirdparty/svm/corrected_svm.cpp \
+    thirdparty/textDetect/erfilter.cpp \
+    thirdparty/xmlParser/xmlParser.cpp \
+    logolabel.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    selectwindow.cpp \
+    showpr.cpp \
+    test.cpp \
+    tool.cpp
+

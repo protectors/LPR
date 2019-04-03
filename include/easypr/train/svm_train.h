@@ -3,6 +3,7 @@
 
 #include "/Users/zhangfeng/slns/LPR/include/easypr/train/train.h"
 #include <vector>
+#include <string>
 #include "/Users/zhangfeng/slns/LPR/include/easypr/config.h"
 #include "/Users/zhangfeng/slns/LPR/include/easypr/core/feature.h"
 

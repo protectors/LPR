@@ -10,7 +10,7 @@
 #ifndef EASYPR_CORE_PLATE_H_
 #define EASYPR_CORE_PLATE_H_
 
-#include "opencv2/opencv.hpp"
+//#include "opencv2/opencv.hpp"
 #include "/Users/zhangfeng/slns/LPR/include/easypr/core/character.hpp"
 #include "/Users/zhangfeng/slns/LPR/include/easypr/config.h"
 

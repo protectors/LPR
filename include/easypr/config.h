@@ -26,16 +26,16 @@ namespace easypr {
     PR_DETECT_CMSER = 0x04,  /**Character detect type, using mser  */
   };
 
-static const char* kDefaultSvmPath = "Z://test//Easy_LPR//model//svm_hist.xml";
-static const char* kLBPSvmPath = "Z://test//Easy_LPR//model//svm_lbp.xml";
-static const char* kHistSvmPath = "Z://test//Easy_LPR//model//svm_hist.xml";
+static const char* kDefaultSvmPath = "/Users/zhangfeng/slns/LPR/model/svm_hist.xml";
+static const char* kLBPSvmPath = "/Users/zhangfeng/slns/LPR/model/svm_lbp.xml";
+static const char* kHistSvmPath = "/Users/zhangfeng/slns/LPR/model/svm_hist.xml";
 
-static const char* kDefaultAnnPath = "Z://test//Easy_LPR//model//ann.xml";
-static const char* kChineseAnnPath = "Z://test//Easy_LPR//model//ann_chinese.xml";
-static const char* kGrayAnnPath = "Z://test//Easy_LPR//model//annCh.xml";
+static const char* kDefaultAnnPath = "/Users/zhangfeng/slns/LPR/model/ann.xml";
+static const char* kChineseAnnPath = "/Users/zhangfeng/slns/LPR/model/ann_chinese.xml";
+static const char* kGrayAnnPath = "/Users/zhangfeng/slns/LPR/model/annCh.xml";
 
 //This is important to for key transform to chinese
-static const char* kChineseMappingPath = "Z://test//Easy_LPR//model//province_mapping";
+static const char* kChineseMappingPath = "/Users/zhangfeng/slns/LPR/model/province_mapping";
 
 typedef enum {
   kForward = 1, // correspond to "has plate"

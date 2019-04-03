@@ -4,6 +4,7 @@
 #include "/Users/zhangfeng/slns/LPR/include/easypr/train/train.h"
 #include "/Users/zhangfeng/slns/LPR/include/easypr/util/kv.h"
 #include <memory>
+#include <string>
 
 namespace easypr {
 

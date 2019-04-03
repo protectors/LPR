@@ -1,4 +1,4 @@
-#include "Tool.h"
+#include "tool.h"
 
 Tool::Tool()
 {

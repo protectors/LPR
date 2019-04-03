@@ -1,3 +1,4 @@
+
 #ifndef EASYPR_CORE_COREFUNC_H_
 #define EASYPR_CORE_COREFUNC_H_
 
