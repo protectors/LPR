@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     animation->start();
     animations->start();
 
-    //按钮动画
+    //按钮动画————————旋转无敌转圈圈
     ui->clear->setImageSize(80,80);
     ui->clear->setQPixmapPath(":/new/prefix1/pictures/clear_off.png");
     ui->clear->setMagnify(false);
@@ -49,8 +49,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->label_5, SIGNAL(rmclicked()), this, SLOT(ReleaseClicked_9()));
     connect(ui->label_5, SIGNAL(clicked()), this, SLOT(PressClicked_9()));
 
-    ui->lineEdit->setText("deer");
-    ui->lineEdit_2->setText("qwe123");
+    ui->lineEdit->setText("zf");
+    ui->lineEdit_2->setText("123");
 }
 
 MainWindow::~MainWindow()
@@ -106,7 +106,7 @@ void MainWindow::ReleaseClicked_9(void)
     {
         QMessageBox::warning(this,"提示","请输入账号或密码!",QMessageBox::Ok);
     }
-    else if(user == "deer" && pass == "qwe123")
+    else if(user == "zf" && pass == "123")
     {
         w = new selectwindow(this);
         w->show();

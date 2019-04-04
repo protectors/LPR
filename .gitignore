@@ -1,3 +1,5 @@
 
 *.o
 Debug
+.DS_Store
+LPR.pro.user

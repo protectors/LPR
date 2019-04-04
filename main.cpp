@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-//#include <QDebug>
 
 
 int main(int argc, char *argv[])
@@ -16,6 +15,7 @@ int main(int argc, char *argv[])
 #include"opencv2/core/core.hpp"
 #include"opencv2/highgui/highgui.hpp"
 using namespace cv;
+
 int main(int argc, char *argv[])
 {
    cv::Mat image=cv::imread("/Users/zhangfeng/Pictures/feng.jpg");
