@@ -48,7 +48,7 @@
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/prefix1/pictures/bg1.jpg);</string>
+     <string notr="true">background-image:url(:/new/prefix1/pictures/bg1.jpg);</string>
     </property>
     <property name="text">
      <string/>
