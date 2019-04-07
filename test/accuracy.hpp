@@ -1,17 +1,17 @@
 #ifndef EASYPR_ACCURACY_HPP
 #define EASYPR_ACCURACY_HPP
 
-#include <easypr.h>
+#include <include/easypr.h>
 #include <ctime>
 #include <fstream>
 #include <list>
 #include <memory>
 #include <numeric>
 #include <unordered_map>
-#include "easypr/core/core_func.h"
-#include "easypr/util/util.h"
+#include "include/easypr/core/core_func.h"
+#include "include/easypr/util/util.h"
 #include "thirdparty/xmlParser/xmlParser.h"
-#include "easypr/core/params.h"
+#include "include/easypr/core/params.h"
 #include "config.hpp"
 #include "result.hpp"
 
@@ -92,7 +92,7 @@ namespace easypr {
 
       // find text mapping, for compatiable withe utf-8 and GBK
       std::shared_ptr<easypr::Kv> kv(new easypr::Kv);
-      kv->load("resources/text/chinese_mapping");
+      kv->load("/Users/zhangfeng/slns/LPR/resources/text/chinese_mapping");
 
       // find groundTruth, for compatiable withe utf-8(Linux/Mac) and GBK(Windows)
       map<string, vector<CPlate>> xmlMap;
@@ -544,7 +544,7 @@ namespace easypr {
     int accuracyCharRecognizeTest(const char* test_path) {
      // find text mapping, for compatiable withe utf-8 and GBK
       std::shared_ptr<easypr::Kv> kv(new easypr::Kv);
-      kv->load("resources/text/chinese_mapping");
+      kv->load("/Users/zhangfeng/slns/LPR/resources/text/chinese_mapping");
 
       // parameters
       const bool filesNatureSort = false;

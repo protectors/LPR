@@ -7,3 +7,6 @@ resources/train/ann
 resources/train/annCh
 resources/train/annGray
 resources/train/svm
+LPR.pro.user
+.DS_Store
+resources/.DS_Store
