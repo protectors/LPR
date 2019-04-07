@@ -3,3 +3,7 @@
 Debug
 .DS_Store
 LPR.pro.user
+resources/train/ann
+resources/train/annCh
+resources/train/annGray
+resources/train/svm
