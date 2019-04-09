@@ -420,8 +420,6 @@ DISTFILES += \
     resources/text/dev_team \
     resources/text/province_mapping \
     resources/text/thanks \
-    thirdparty/xmlParser/AFPL-license.txt \
-    thirdparty/CMakeLists.txt \
     resources/text/batch_test_menu \
     resources/text/main_menu \
     resources/text/test_menu \

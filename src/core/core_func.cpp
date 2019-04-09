@@ -32,6 +32,10 @@ namespace easypr {
     const int min_white = 0;   // 15
     const int max_white = 30;  // 40
 
+    // H range of green
+    const int min_green = 35;
+    const int max_green = 80;
+
     Mat src_hsv;
 
     // convert to HSV space
@@ -58,6 +62,10 @@ namespace easypr {
     case WHITE:
       min_h = min_white;
       max_h = max_white;
+      break;
+    case GREEN:
+      min_h = min_green;
+      max_h = max_green;
       break;
     default:
       // Color::UNKNOWN

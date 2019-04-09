@@ -1045,7 +1045,7 @@ int CCharsSegment::GetSpecificRect(const vector<Rect>& vecRect) {
 
 int CCharsSegment::RebuildRect(const vector<Rect>& vecRect,
                                vector<Rect>& outRect, int specIndex) {
-  int count = 6;
+  int count = 7;    //change 6 to 7,for green plate
   for (size_t i = specIndex; i < vecRect.size() && count; ++i, --count) {
     outRect.push_back(vecRect[i]);
   }

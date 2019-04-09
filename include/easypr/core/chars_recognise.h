@@ -35,6 +35,7 @@ class CCharsRecognise {
     Color result = getPlateType(input, true);
     if (BLUE == result) color = "蓝牌";
     if (YELLOW == result) color = "黄牌";
+    if (GREEN == result) color = "绿牌";
     if (WHITE == result) color = "白牌";
 #ifdef OS_WINDOWS
     color = utils::utf8_to_gbk(color.c_str());
@@ -46,6 +47,7 @@ class CCharsRecognise {
     std::string color = "未知";
     if (BLUE == in) color = "蓝牌";
     if (YELLOW == in) color = "黄牌";
+    if (GREEN == in) color = "绿牌";
     if (WHITE == in) color = "白牌";
 #ifdef OS_WINDOWS
     color = utils::utf8_to_gbk(color.c_str());
