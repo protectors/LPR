@@ -30,15 +30,14 @@ int main(int argc, char *argv[])
 }
 */
 
-
 //#include "include/easypr.h"
 //#include "include/easypr/util/switch.hpp"
 
 //#include "test/accuracy.hpp"
 //#include "test/chars.hpp"
 //#include "test/plate.hpp"
-////
-//// %OPENCV%\x86\vc12\lib;
+//
+// %OPENCV%\x86\vc12\lib;
 
 //namespace easypr {
 

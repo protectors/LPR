@@ -28,10 +28,14 @@ QMAKE_CXXFLAGS += -std=c++11
 
 
 INCLUDEPATH += /usr/local/Cellar/eigen/3.3.7/include/eigen3
+INCLUDEPATH += /usr/local/Cellar/tbb/2019_U5_1/include
 INCLUDEPATH += /usr/local/include
 INCLUDEPATH += /usr/local/include/opencv
 INCLUDEPATH += /usr/local/include/opencv2
-LIBS += -L/usr/local/Cellar/opencv/3.4.0/build/lib \
+INCLUDEPATH += /usr/local/Cellar/opencv@3/3.4.5/include
+#INCLUDEPATH += /usr/local/Cellar/opencv@3/3.4.5/include/opencv
+#INCLUDEPATH += /usr/local/Cellar/opencv@3/3.4.5/include/opencv2
+LIBS += -L/usr/local/Cellar/opencv@3/3.4.5/lib \
     -lopencv_core \
     -lopencv_highgui \
     -lopencv_imgproc \
@@ -47,7 +51,8 @@ LIBS += -L/usr/local/Cellar/opencv/3.4.0/build/lib \
     -lopencv_superres \
     -lopencv_videostab \
     -lopencv_shape
-
+LIBS += -L/usr/local/Cellar/tbb/2019_U5_1/lib \
+    -ltbb
 SUBDIRS += \
     LPR.pro
 
