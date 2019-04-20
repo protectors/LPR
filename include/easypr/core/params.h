@@ -1,12 +1,3 @@
-//////////////////////////////////////////////////////////////////////////
-// Name:	    params Header
-// Version:		1.0
-// Date:	    2016-07-01
-// Author:	    liuruoze
-// Copyright:   liuruoze
-// Desciption:
-// An abstract class for runtime algorithm params in easypr.
-//////////////////////////////////////////////////////////////////////////
 #ifndef EASYPR_CORE_PARAMS_H_
 #define EASYPR_CORE_PARAMS_H_
 

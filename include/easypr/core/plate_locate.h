@@ -1,16 +1,3 @@
-//////////////////////////////////////////////////////////////////////////
-// Name:	    plate_locate Header
-// Version:		1.2
-// Date:	    2014-09-19
-// MDate:		2014-09-29
-// MDate:	    2015-03-13
-// Author:	    liuruoze
-// Copyright:   liuruoze
-// Reference:	Mastering OpenCV with Practical Computer Vision Projects
-// Reference:	CSDN Bloger taotao1233
-// Desciption:
-// Defines CPlateLocate
-//////////////////////////////////////////////////////////////////////////
 #ifndef EASYPR_CORE_PLATELOCATE_H_
 #define EASYPR_CORE_PLATELOCATE_H_
 
@@ -62,6 +49,7 @@ class CPlateLocate {
     vector<vector<CPlate>>& out_plateVec, bool usePlateMser, vector<vector<RotatedRect>>& out_plateRRect,
     int img_index = 0, bool showDebug = false);
 
+  //车牌定位
   int plateLocate(Mat, std::vector<Mat>&, int = 0);
   int plateLocate(Mat, std::vector<CPlate>&, int = 0);
 
@@ -118,21 +106,23 @@ class CPlateLocate {
   static const int DEFAULT_DEBUG = 1;
 
  protected:
-
+  //高斯模糊所用变量
   int m_GaussianBlurSize;
 
+  //连接操作所用变量
   int m_MorphSizeWidth;
   int m_MorphSizeHeight;
 
-
+  //verifySize所用变量
   float m_error;
   float m_aspect;
   int m_verifyMin;
   int m_verifyMax;
 
+  //角度判断所用变量
   int m_angle;
 
-
+  //开启调试模式，0关闭，非0开启
   bool m_debug;
 };
 

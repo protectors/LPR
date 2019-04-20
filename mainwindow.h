@@ -37,7 +37,6 @@ private:
      QTimer *mtimer;
      QDateTime time;
      selectwindow *w;
-
 };
 
 #endif // MAINWINDOW_H

@@ -9,7 +9,9 @@ namespace easypr {
 
 const float DEFAULT_ERROR = 0.9f;    // 0.6
 const float DEFAULT_ASPECT = 3.75f;  // 3.75
+int debug=0;
 
+//构造函数
 CPlateLocate::CPlateLocate() {
   m_GaussianBlurSize = DEFAULT_GAUSSIANBLUR_SIZE;
   m_MorphSizeWidth = DEFAULT_MORPH_SIZE_WIDTH;
@@ -25,6 +27,7 @@ CPlateLocate::CPlateLocate() {
   m_debug = DEFAULT_DEBUG;
 }
 
+//设置生活模式，优化图像参数
 void CPlateLocate::setLifemode(bool param) {
   if (param) {
     setGaussianBlurSize(5);
@@ -45,6 +48,7 @@ void CPlateLocate::setLifemode(bool param) {
   }
 }
 
+//尺寸判断
 bool CPlateLocate::verifySizes(RotatedRect mr) {
   float error = m_error;
   // Spain car plate size: 52x11 aspect 4,7272
@@ -116,8 +120,9 @@ int CPlateLocate::colorSearch(const Mat &src, const Color r, Mat &out,
   const int color_morph_height = 2;
 
   colorMatch(src, match_grey, r, false);
-  SHOW_IMAGE(match_grey, 0);
+  SHOW_IMAGE(match_grey, 0);    //显示图片
 
+  //二值化
   Mat src_threshold;
   threshold(match_grey, src_threshold, 0, 255,
             CV_THRESH_OTSU + CV_THRESH_BINARY);
@@ -132,9 +137,8 @@ int CPlateLocate::colorSearch(const Mat &src, const Color r, Mat &out,
 
   src_threshold.copyTo(out);
 
-
+  //查找轮廓
   vector<vector<Point>> contours;
-
   findContours(src_threshold,
                contours,               // a vector of contours
                CV_RETR_EXTERNAL,
@@ -163,6 +167,7 @@ int CPlateLocate::sobelFrtSearch(const Mat &src,
   sobelOper(src, src_threshold, m_GaussianBlurSize, m_MorphSizeWidth,
             m_MorphSizeHeight);
 
+  //取轮廓
   vector<vector<Point>> contours;
   findContours(src_threshold,
                contours,               // a vector of contours
@@ -304,13 +309,16 @@ int CPlateLocate::sobelSecSearch(Mat &bound, Point2f refpoint,
   return 0;
 }
 
-
+//sobel算子操作：高斯模糊+灰度化+sobel算子
 int CPlateLocate::sobelOper(const Mat &in, Mat &out, int blurSize, int morphW,
                             int morphH) {
   Mat mat_blur;
   mat_blur = in.clone();
+
+  //高斯模糊，Size中的数字影响车牌定位的效果
   GaussianBlur(in, mat_blur, Size(blurSize, blurSize), 0, 0, BORDER_DEFAULT);
 
+  //灰度化
   Mat mat_gray;
   if (mat_blur.channels() == 3)
     cvtColor(mat_blur, mat_gray, CV_RGB2GRAY);
@@ -332,10 +340,12 @@ int CPlateLocate::sobelOper(const Mat &in, Mat &out, int blurSize, int morphW,
   addWeighted(abs_grad_x, SOBEL_X_WEIGHT, 0, 0, 0, grad);
 
   Mat mat_threshold;
+
+  //阈值操作
   double otsu_thresh_val =
       threshold(grad, mat_threshold, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
 
-
+  //返回指定形状和尺寸的结构元素+闭操作
   Mat element = getStructuringElement(MORPH_RECT, Size(morphW, morphH));
   morphologyEx(mat_threshold, mat_threshold, MORPH_CLOSE, element);
 
@@ -344,8 +354,11 @@ int CPlateLocate::sobelOper(const Mat &in, Mat &out, int blurSize, int morphW,
   return 0;
 }
 
+//删除不是面积的
 void deleteNotArea(Mat &inmat, Color color = UNKNOWN) {
   Mat input_grey;
+
+  //灰度化
   cvtColor(inmat, input_grey, CV_BGR2GRAY);
 
   int w = inmat.cols;
@@ -400,7 +413,7 @@ void deleteNotArea(Mat &inmat, Color color = UNKNOWN) {
   int bottom = img_threshold.rows - 1;
   clearLiuDing(img_threshold, top, bottom);
 
-  if (0) {
+  if (debug) {
     imshow("inmat", inmat);
     waitKey(0);
     destroyWindow("inmat");
@@ -408,7 +421,7 @@ void deleteNotArea(Mat &inmat, Color color = UNKNOWN) {
 
   if (bFindLeftRightBound1(img_threshold, posLeft, posRight)) {
     inmat = inmat(Rect(posLeft, top, w - posLeft, bottom - top));
-    if (0) {
+    if (debug) {
       imshow("inmat", inmat);
       waitKey(0);
       destroyWindow("inmat");
@@ -456,7 +469,7 @@ int CPlateLocate::deskew(const Mat &src, const Mat &src_b,
       Mat bound_mat = src(safeBoundRect);
       Mat bound_mat_b = src_b(safeBoundRect);
 
-      if (0) {
+      if (debug) {
         imshow("bound_mat_b", bound_mat_b);
         waitKey(0);
         destroyWindow("bound_mat_b");
@@ -515,7 +528,7 @@ int CPlateLocate::deskew(const Mat &src, const Mat &src_b,
 
 bool CPlateLocate::rotation(Mat &in, Mat &out, const Size rect_size,
                             const Point2f center, const double angle) {
-  if (0) {
+  if (debug) {
     imshow("in", in);
     waitKey(0);
     destroyWindow("in");
@@ -559,7 +572,7 @@ bool CPlateLocate::rotation(Mat &in, Mat &out, const Size rect_size,
 
   out = img_crop;
 
-  if (0) {
+  if (debug) {
     imshow("out", out);
     waitKey(0);
     destroyWindow("out");
@@ -574,7 +587,7 @@ bool CPlateLocate::rotation(Mat &in, Mat &out, const Size rect_size,
 bool CPlateLocate::isdeflection(const Mat &in, const double angle,
                                 double &slope) { /*imshow("in",in);
                                                 waitKey(0);*/
-  if (0) {
+  if (debug) {
     imshow("in", in);
     waitKey(0);
     destroyWindow("in");
@@ -699,16 +712,21 @@ int CPlateLocate::plateColorLocate(Mat src, vector<CPlate> &candPlates,
   rects_color_blue.reserve(64);
   vector<RotatedRect> rects_color_yellow;
   rects_color_yellow.reserve(64);
+  vector<RotatedRect> rects_color_green;
+  rects_color_green.reserve(64);
 
   vector<CPlate> plates_blue;
   plates_blue.reserve(64);
   vector<CPlate> plates_yellow;
   plates_yellow.reserve(64);
+  vector<CPlate> plates_green;
+  plates_green.reserve(64);
 
   Mat src_clone = src.clone();
 
   Mat src_b_blue;
   Mat src_b_yellow;
+  Mat src_b_green;
 #pragma omp parallel sections
   {
 #pragma omp section
@@ -721,11 +739,16 @@ int CPlateLocate::plateColorLocate(Mat src, vector<CPlate> &candPlates,
       colorSearch(src_clone, YELLOW, src_b_yellow, rects_color_yellow);
       deskew(src_clone, src_b_yellow, rects_color_yellow, plates_yellow, true, YELLOW);
     }
+#pragma omp section
+    {
+      colorSearch(src_clone, GREEN, src_b_green, rects_color_green);
+      deskew(src_clone, src_b_green, rects_color_green, plates_green, true, GREEN);
+    }
   }
 
   candPlates.insert(candPlates.end(), plates_blue.begin(), plates_blue.end());
   candPlates.insert(candPlates.end(), plates_yellow.begin(), plates_yellow.end());
-
+  candPlates.insert(candPlates.end(), plates_green.begin(), plates_green.end());
   return 0;
 }
 
@@ -806,7 +829,7 @@ int CPlateLocate::plateMserLocate(Mat src, vector<CPlate> &candPlates, int img_i
     }
   }
 
-  if (0) {
+  if (debug) {
     imshow("src", src);
     waitKey(0);
     destroyWindow("src");
@@ -970,9 +993,9 @@ int CPlateLocate::plateSobelLocate(Mat src, vector<CPlate> &candPlates,
 int CPlateLocate::plateLocate(Mat src, vector<Mat> &resultVec, int index) {
   vector<CPlate> all_result_Plates;
 
-  plateColorLocate(src, all_result_Plates, index);
-  plateSobelLocate(src, all_result_Plates, index);
-  plateMserLocate(src, all_result_Plates, index);
+  plateColorLocate(src, all_result_Plates, index);  //颜色定位
+  plateSobelLocate(src, all_result_Plates, index);  //sobel定位
+  plateMserLocate(src, all_result_Plates, index);  //Mser定位
 
   for (size_t i = 0; i < all_result_Plates.size(); i++) {
     CPlate plate = all_result_Plates[i];
@@ -982,15 +1005,17 @@ int CPlateLocate::plateLocate(Mat src, vector<Mat> &resultVec, int index) {
   return 0;
 }
 
+//车牌定位
 int CPlateLocate::plateLocate(Mat src, vector<CPlate> &resultVec, int index) {
   vector<CPlate> all_result_Plates;
 
-  plateColorLocate(src, all_result_Plates, index);
-  plateSobelLocate(src, all_result_Plates, index);
-  plateMserLocate(src, all_result_Plates, index);
+  plateColorLocate(src, all_result_Plates, index);  //颜色定位
+  plateSobelLocate(src, all_result_Plates, index);  //sobel定位
+  plateMserLocate(src, all_result_Plates, index);   //Mser定位
 
   for (size_t i = 0; i < all_result_Plates.size(); i++) {
     resultVec.push_back(all_result_Plates[i]);
+    //imshow("test",all_result_Plates[i].getPlateMat());
   }
 
   return 0;

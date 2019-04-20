@@ -94,7 +94,7 @@ void test::ReleaseClicked_1(void)
      pr.setDetectType(PR_DETECT_CMSER | PR_DETECT_COLOR);
      vector<CPlate> plateVec;
      Mat src = imread(num_data);
-     pr.setLifemode(true);  //开启生活模式，增加鲁棒性
+     pr.setLifemode(false);  //开启生活模式，增加鲁棒性
      pr.setMaxPlates(4);    //识别车牌数目
      int result = pr.plateRecognize(src, plateVec);
      if(result)
