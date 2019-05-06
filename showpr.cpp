@@ -10,7 +10,7 @@ showpr::showpr(QWidget *parent) :
     ui(new Ui::showpr)
 {
     ui->setupUi(this);
-
+    this->setWindowTitle(QString("车牌识别演示部分"));
     //窗口动画
     QPropertyAnimation *animation = new QPropertyAnimation(this, "geometry");
     animation->setDuration(1000);
