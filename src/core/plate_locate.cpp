@@ -526,8 +526,7 @@ int CPlateLocate::deskew(const Mat &src, const Mat &src_b,
 }
 
 
-bool CPlateLocate::rotation(Mat &in, Mat &out, const Size rect_size,
-                            const Point2f center, const double angle) {
+bool CPlateLocate::rotation(Mat &in, Mat &out, const Size rect_size, const Point2f center, const double angle) {
   if (debug) {
     imshow("in", in);
     waitKey(0);
@@ -584,6 +583,7 @@ bool CPlateLocate::rotation(Mat &in, Mat &out, const Size rect_size,
   return true;
 }
 
+//判断是否偏斜
 bool CPlateLocate::isdeflection(const Mat &in, const double angle,
                                 double &slope) { /*imshow("in",in);
                                                 waitKey(0);*/
@@ -885,8 +885,7 @@ int CPlateLocate::sobelOperT(const Mat &in, Mat &out, int blurSize, int morphW,
   return 0;
 }
 
-int CPlateLocate::plateSobelLocate(Mat src, vector<CPlate> &candPlates,
-                                   int index) {
+int CPlateLocate::plateSobelLocate(Mat src, vector<CPlate> &candPlates,int index) {
   vector<RotatedRect> rects_sobel_all;
   rects_sobel_all.reserve(256);
 

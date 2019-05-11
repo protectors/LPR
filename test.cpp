@@ -46,7 +46,7 @@ test::test(QWidget *parent) :
         menu[0]->addAction(preact[4]);
         menu[0]->addAction(preact[5]);
         menu[0]->addAction(preact[6]);
-        menu[0]->addAction(preact[7]);
+        //menu[0]->addAction(preact[7]);
 
         // menu[0]->addSeparator();//添加分割线
         menu[1] = new QMenu("测试");
@@ -137,6 +137,8 @@ test::test(QWidget *parent) :
         connect(ui->label_5, SIGNAL(clicked()), this, SLOT(PressClicked()));
         connect(ui->label_6, SIGNAL(rmclicked()), this, SLOT(ReleaseClicked_1()));
         connect(ui->label_6, SIGNAL(clicked()), this, SLOT(PressClicked_1()));
+
+
 }
 
 
@@ -204,6 +206,8 @@ void test::ReleaseClicked_1(void)
      QImage showImage((const uchar*)src.data,src.cols,src.rows,src.cols*src.channels(),QImage::Format_RGB888);
      ui->label_2->setPixmap(QPixmap::fromImage(showImage));
      qDebug()<<"添加图片成功！";
+     pre_tmp=src.clone();
+     qDebug()<<"完成副本创建";
 }
 
 //test-车牌定位
@@ -395,29 +399,113 @@ void test::train_genchar(){
 void test::pre_Gaussian(){
     qDebug()<<"高斯模糊";
     ui->label_3->clear();
+    int blurSize=5;
+    Mat pre_Gauss=pre_tmp.clone();
+    GaussianBlur(pre_Gauss, pre_tmp, Size(blurSize, blurSize), 0, 0, BORDER_DEFAULT);
+    cvtColor(pre_tmp,pre_tmp,CV_BGR2RGB);//opencv读取图片按照BGR方式读取，为了正常显示，所以将BGR转为RGB
+    QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_RGB888);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
 }
 void test::pre_gray(){
     qDebug()<<"灰度化";
-    ui->label_3->clear();
+    Mat pre_gay=pre_tmp.clone();
+    cvtColor(pre_gay, pre_tmp,CV_BGR2GRAY);
+    QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_Indexed8);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
 }
 void test::pre_sobel(){
     qDebug()<<"Sobel算子";
     ui->label_3->clear();
+    int scale = SOBEL_SCALE;
+    int delta = SOBEL_DELTA;
+    int ddepth = SOBEL_DDEPTH;
+
+    Mat grad_x, grad_y;
+    Mat abs_grad_x, abs_grad_y;
+
+    Sobel(pre_tmp, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT);
+    convertScaleAbs(grad_x, abs_grad_x);
+    addWeighted(abs_grad_x, SOBEL_X_WEIGHT, 0, 0, 0, pre_tmp);
+    QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_Indexed8);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
 }
 void test::pre_binary(){
     qDebug()<<"二值化";
     ui->label_3->clear();
+    threshold(pre_tmp, pre_tmp, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
+    QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_Indexed8);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
 }
 void test::pre_close(){
     qDebug()<<"闭操作";
     ui->label_3->clear();
+    int morphW=17;
+    int morphH=3;
+    Mat element = getStructuringElement(MORPH_RECT, Size(morphW, morphH));
+    morphologyEx(pre_tmp, pre_tmp, MORPH_CLOSE, element);
+    QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_Indexed8);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
 }
 void test::pre_lunkuo(){
     qDebug()<<"取外轮廓";
     ui->label_3->clear();
+
+    vector<vector<Point>> contours;
+    findContours(pre_tmp,
+                 contours,               // a vector of contours
+                 CV_RETR_EXTERNAL,      //提取外部轮廓
+                 CV_CHAIN_APPROX_NONE);  // all pixels of each contours
+
+    vector<vector<Point>>::iterator itc = contours.begin();
+    Mat image=src.clone();
+    while (itc != contours.end()) {
+      RotatedRect mr = minAreaRect(Mat(*itc));
+
+      if (!pl.verifySizes(mr))
+        itc = contours.erase(itc);
+      else {
+        ++itc;
+        outRects.push_back(mr);
+        Point2f v[4];
+        mr.points(v);
+        for (int i = 0; i < 4; i++)
+            line(image, v[i], v[(i + 1) % 4], Scalar(0, 255, 0),2);
+        cvtColor(image,image,CV_BGR2RGB);//opencv读取图片按照BGR方式读取，为了正常显示，所以将BGR转为RGB
+        QImage showImage((const uchar*)image.data,image.cols,image.rows,image.cols*image.channels(),QImage::Format_RGB888);
+        ui->label_3->setPixmap(QPixmap::fromImage(showImage));
+      }
+    }
 }
 void test::pre_change(){
+    qDebug()<<"仿射变换";
+    ui->label_3->clear();      
+    Mat img_rotated;
+
+    RotatedRect minRect = outRects[1];
+    if(pl.verifySizes(minRect)){
+        float r = (float)minRect.size.width / (float)minRect.size.height;
+        float angle = minRect.angle;
+        Size rect_size = minRect.size;
+        if (r < 1){
+            angle = 90 + angle;
+            swap(rect_size.width, rect_size.height);
+        }
+        Mat rotmat = getRotationMatrix2D(minRect.center, angle, 1);
+        warpAffine(src, img_rotated, rotmat, src.size(), CV_INTER_CUBIC);
+    }
+    pre_tmp=img_rotated;
+    cvtColor(pre_tmp,pre_tmp,CV_BGR2RGB);//opencv读取图片按照BGR方式读取，为了正常显示，所以将BGR转为RGB
+    QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_RGB888);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
+
 }
 void test::pre_normal(){
-
+    qDebug()<<"归一化";
+    ui->label_3->clear();
+    Mat out;
+    //getRectSubPix(src, Size(outRects[1].size.width, outRects[1].size.height),outRects[1].center, out);
+    out=src;
+    cvtColor(src,src,CV_BGR2RGB);//opencv读取图片按照BGR方式读取，为了正常显示，所以将BGR转为RGB
+    QImage showImage((const uchar*)src.data,src.cols,src.rows,src.cols*src.channels(),QImage::Format_RGB888);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
 }
