@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -48,7 +51,7 @@
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">image:url(:/new/prefix1/pictures/bg1.jpg)</string>
     </property>
     <property name="text">
      <string/>
@@ -102,9 +105,9 @@
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>10</y>
+      <y>20</y>
       <width>551</width>
-      <height>311</height>
+      <height>261</height>
      </rect>
     </property>
     <property name="font">
@@ -129,9 +132,9 @@
     <property name="geometry">
      <rect>
       <x>670</x>
-      <y>330</y>
-      <width>561</width>
-      <height>171</height>
+      <y>290</y>
+      <width>421</width>
+      <height>211</height>
      </rect>
     </property>
     <property name="palette">
@@ -140,18 +143,18 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -167,9 +170,9 @@
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -178,18 +181,18 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -205,9 +208,9 @@
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -270,8 +273,8 @@
    <widget class="LogoLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>1190</x>
-      <y>480</y>
+      <x>1150</x>
+      <y>490</y>
       <width>80</width>
       <height>80</height>
      </rect>

@@ -31,16 +31,23 @@ test::test(QWidget *parent) :
 
         preact[0] = new QAction("高斯模糊",this);
         preact[1] = new QAction("灰度化",this);
-        preact[2] = new QAction("Sobel算子",this);
-        preact[3] = new QAction("二值化",this);
-        preact[4] = new QAction("闭操作",this);
-        preact[5] = new QAction("取轮廓",this);
-        preact[6] = new QAction("矩形旋转",this);
-        preact[7] = new QAction("统一尺寸",this);
+
+        preact[2] = new QAction("二值化",this);
+        preact[3] = new QAction("闭操作",this);
+        preact[4] = new QAction("取轮廓",this);
+        preact[5] = new QAction("矩形旋转",this);
+        preact[6] = new QAction("统一尺寸",this);
+        preact[7] = new QAction("Sobel算子",this);
+        preact[8] = new QAction("Roberts算子",this);
+        preact[9] = new QAction("Prewitt算子",this);
 
         menu[0] = new QMenu("预处理");
         menu[0]->addAction(preact[0]);
         menu[0]->addAction(preact[1]);
+        menu[3] = menu[0]->addMenu("形态学");
+                menu[3]->addAction(preact[7]);
+                menu[3]->addAction(preact[8]);
+                menu[3]->addAction(preact[9]);
         menu[0]->addAction(preact[2]);
         menu[0]->addAction(preact[3]);
         menu[0]->addAction(preact[4]);
@@ -65,6 +72,11 @@ test::test(QWidget *parent) :
         menu[2]->addAction(trainact[2]);
         menu[2]->addAction(trainact[3]);
 
+//        menu[3] = new QMenu("形态学");
+//        menu[3]->addAction(preact[7]);
+//        menu[3]->addAction(preact[8]);
+//        menu[3]->addAction(preact[9]);
+
         //act[0][2] = new QAction("显示窗口",this);
         //act[0][2]->setCheckable(true);//设置checkbox
 
@@ -81,12 +93,15 @@ test::test(QWidget *parent) :
        // connect(menuBar,SIGNAL(triggered(QAction*)),this,SLOT(trigerMenu(QAction*)));//对所有act点击事件有效，快捷键事件无效
         connect(preact[0] ,SIGNAL(triggered()),this,SLOT(pre_Gaussian()));
         connect(preact[1] ,SIGNAL(triggered()),this,SLOT(pre_gray()));
-        connect(preact[2] ,SIGNAL(triggered()),this,SLOT(pre_sobel()));
-        connect(preact[3] ,SIGNAL(triggered()),this,SLOT(pre_binary()));
-        connect(preact[4] ,SIGNAL(triggered()),this,SLOT(pre_close()));
-        connect(preact[5] ,SIGNAL(triggered()),this,SLOT(pre_lunkuo()));
-        connect(preact[6] ,SIGNAL(triggered()),this,SLOT(pre_change()));
-        connect(preact[7] ,SIGNAL(triggered()),this,SLOT(pre_normal()));
+
+        connect(preact[2] ,SIGNAL(triggered()),this,SLOT(pre_binary()));
+        connect(preact[3] ,SIGNAL(triggered()),this,SLOT(pre_close()));
+        connect(preact[4] ,SIGNAL(triggered()),this,SLOT(pre_lunkuo()));
+        connect(preact[5] ,SIGNAL(triggered()),this,SLOT(pre_change()));
+        connect(preact[6] ,SIGNAL(triggered()),this,SLOT(pre_normal()));
+        connect(preact[7] ,SIGNAL(triggered()),this,SLOT(pre_sobel()));
+        connect(preact[8] ,SIGNAL(triggered()),this,SLOT(pre_Roberts()));
+        connect(preact[9] ,SIGNAL(triggered()),this,SLOT(pre_Prewitt()));
 
         connect(testact[0] ,SIGNAL(triggered()),this,SLOT(test_locate()));
         connect(testact[1] ,SIGNAL(triggered()),this,SLOT(test_judge()));
@@ -412,10 +427,12 @@ void test::pre_gray(){
     cvtColor(pre_gay, pre_tmp,CV_BGR2GRAY);
     QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_Indexed8);
     ui->label_3->setPixmap(QPixmap::fromImage(showImage));
+    pre_suanzi=pre_tmp;
 }
 void test::pre_sobel(){
     qDebug()<<"Sobel算子";
     ui->label_3->clear();
+    Mat tmp=pre_suanzi.clone();
     int scale = SOBEL_SCALE;
     int delta = SOBEL_DELTA;
     int ddepth = SOBEL_DDEPTH;
@@ -423,11 +440,80 @@ void test::pre_sobel(){
     Mat grad_x, grad_y;
     Mat abs_grad_x, abs_grad_y;
 
-    Sobel(pre_tmp, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT);
+    Sobel(tmp, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT);
     convertScaleAbs(grad_x, abs_grad_x);
-    addWeighted(abs_grad_x, SOBEL_X_WEIGHT, 0, 0, 0, pre_tmp);
+    addWeighted(abs_grad_x, SOBEL_X_WEIGHT, 0, 0, 0, tmp);
+    QImage showImage((const uchar*)tmp.data,tmp.cols,tmp.rows,tmp.cols*tmp.channels(),QImage::Format_Indexed8);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
+    pre_tmp=tmp;
+}
+void test::pre_Roberts(){
+    qDebug()<<"Roberts算子";
+    ui->label_3->clear();
+    Mat srcImage = pre_suanzi.clone();
+    Mat dstImage = srcImage.clone();
+    int nRows = dstImage.rows;
+    int nCols = dstImage.cols;
+    for (int i = 0; i < nRows - 1; i++){
+        for (int j = 0; j < nCols - 1; j++){
+            //根据公式计算
+            int t1 = (srcImage.at<uchar>(i, j) -
+                      srcImage.at<uchar>(i + 1, j + 1))*
+                     (srcImage.at<uchar>(i, j) -
+                      srcImage.at<uchar>(i + 1, j + 1));
+            int t2 = (srcImage.at<uchar>(i+1, j) -
+                      srcImage.at<uchar>(i , j + 1))*
+                     (srcImage.at<uchar>(i+1, j) -
+                      srcImage.at<uchar>(i , j + 1));
+            //计算g（x,y）
+            dstImage.at<uchar>(i, j) = (uchar)sqrt(t1 + t2);
+        }
+    }
+    pre_tmp=dstImage;
     QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_Indexed8);
     ui->label_3->setPixmap(QPixmap::fromImage(showImage));
+
+}
+void test::pre_Prewitt(){
+    qDebug()<<"Prewitt算子";
+    ui->label_3->clear();
+    Mat imageP=pre_suanzi.clone();
+    float prewittx[9] =
+    {
+        -1,0,1,
+        -1,0,1,
+        -1,0,1
+    };
+    float prewitty[9] =
+    {
+        1,1,1,
+        0,0,0,
+        -1,-1,-1
+    };
+    Mat px=Mat(3,3,CV_32F,prewittx);
+    cout<<px<<endl;
+    Mat py=Mat(3,3,CV_32F,prewitty);
+    cout<<py<<endl;
+    Mat dstx=Mat(imageP.size(),imageP.type(),imageP.channels());
+    Mat dsty=Mat(imageP.size(),imageP.type(),imageP.channels());
+    Mat dst=Mat(imageP.size(),imageP.type(),imageP.channels());
+    filter2D(imageP,dstx,imageP.depth(),px);
+    filter2D(imageP,dsty,imageP.depth(),py);
+    float tempx,tempy,temp;
+    for(int i=0;i<imageP.rows;i++)
+    {
+        for(int j=0;j<imageP.cols;j++)
+        {
+            tempx=dstx.at<uchar>(i,j);
+            tempy=dsty.at<uchar>(i,j);
+            temp=sqrt(tempx*tempx+tempy*tempy);
+            dst.at<uchar>(i,j)=temp;
+        }
+    }
+    pre_tmp=dst;
+    QImage showImage((const uchar*)pre_tmp.data,pre_tmp.cols,pre_tmp.rows,pre_tmp.cols*pre_tmp.channels(),QImage::Format_Indexed8);
+    ui->label_3->setPixmap(QPixmap::fromImage(showImage));
+
 }
 void test::pre_binary(){
     qDebug()<<"二值化";
@@ -478,7 +564,7 @@ void test::pre_lunkuo(){
 }
 void test::pre_change(){
     qDebug()<<"仿射变换";
-    ui->label_3->clear();      
+    ui->label_3->clear();
     Mat img_rotated;
 
     RotatedRect minRect = outRects[1];

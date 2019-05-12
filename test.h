@@ -51,6 +51,7 @@ public:
     easypr::CPlate plate;
     Mat src;
     Mat pre_tmp;    //预处理的中间过程
+    Mat pre_suanzi; //进行算子比对是使用的中间变量，用于存储处理灰度化的结果
     ~test();
 
     static const int DEFAULT_GAUSSIANBLUR_SIZE = 5;
@@ -93,6 +94,8 @@ public slots:
     void pre_Gaussian();
     void pre_gray();
     void pre_sobel();
+    void pre_Roberts();
+    void pre_Prewitt();
     void pre_binary();
     void pre_close();
     void pre_lunkuo();

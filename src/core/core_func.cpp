@@ -7,8 +7,8 @@
 #include <ctime>
 
 namespace easypr {
-  Mat colorMatch(const Mat &src, Mat &match, const Color r,
-    const bool adaptive_minsv) {
+//颜色匹配
+  Mat colorMatch(const Mat &src, Mat &match, const Color r,const bool adaptive_minsv) {
 
     // if use adaptive_minsv
     // min value of s and v is adaptive to h
@@ -33,7 +33,7 @@ namespace easypr {
     const int max_white = 30;  // 40
 
     // H range of green
-    const int min_green = 35;
+    const int min_green = 50;
     const int max_green = 80;
 
     Mat src_hsv;

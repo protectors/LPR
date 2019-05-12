@@ -7,7 +7,7 @@ using namespace std;
 
 namespace easypr {
 
-const float DEFAULT_ERROR = 0.9f;    // 0.6
+const float DEFAULT_ERROR = 0.8f;    // 0.6
 const float DEFAULT_ASPECT = 3.75f;  // 3.75
 int debug=0;
 
@@ -19,8 +19,8 @@ CPlateLocate::CPlateLocate() {
 
   m_error = DEFAULT_ERROR;
   m_aspect = DEFAULT_ASPECT;
-  m_verifyMin = DEFAULT_VERIFY_MIN;
-  m_verifyMax = DEFAULT_VERIFY_MAX;
+  m_verifyMin = DEFAULT_VERIFY_MIN; //1
+  m_verifyMax = DEFAULT_VERIFY_MAX; //24
 
   m_angle = DEFAULT_ANGLE;
 
@@ -48,7 +48,7 @@ void CPlateLocate::setLifemode(bool param) {
   }
 }
 
-//尺寸判断
+//尺寸判断，根据RotatedRected的尺寸计算其面积是否符合车牌的大小。符合则为true，否则为false
 bool CPlateLocate::verifySizes(RotatedRect mr) {
   float error = m_error;
   // Spain car plate size: 52x11 aspect 4,7272
@@ -67,6 +67,7 @@ bool CPlateLocate::verifySizes(RotatedRect mr) {
   float rmin = aspect - aspect * error;
   float rmax = aspect + aspect * error;
 
+  //计算area和宽高比
   float area = mr.size.height * mr.size.width;
   float r = (float) mr.size.width / (float) mr.size.height;
   if (r < 1) r = (float) mr.size.height / (float) mr.size.width;

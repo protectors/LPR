@@ -90,14 +90,13 @@ static const char *kChars[] = {
   /*  31  */
 };
 
-static const int kCharactersNumber = 34;
-static const int kChineseNumber = 31;
-static const int kCharsTotalNumber = 65;
+  static const int kCharactersNumber = 34;
+  static const int kChineseNumber = 31;
+  static const int kCharsTotalNumber = 65;
+  static bool kDebug = false;
 
-static bool kDebug = false;
-
-static const int kGrayCharWidth = 20;
-static const int kGrayCharHeight = 32;
+  static const int kGrayCharWidth = 20;
+  static const int kGrayCharHeight = 32;
   static const int kCharLBPGridX = 4;
   static const int kCharLBPGridY = 4;
   static const int kCharLBPPatterns = 16;

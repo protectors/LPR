@@ -76,6 +76,7 @@ static Color get_plate_color(const char* image) {
 
   return getPlateType(img, true);
 }
+
 }
 }
 
