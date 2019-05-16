@@ -1,12 +1,3 @@
-//////////////////////////////////////////////////////////////////////////
-// Name:	    plate Header
-// Version:		1.0
-// Date:	    2015-03-12
-// Author:	    liuruoze
-// Copyright:   liuruoze
-// Desciption:
-// An abstract class for car plate.
-//////////////////////////////////////////////////////////////////////////
 #ifndef EASYPR_CORE_PLATE_H_
 #define EASYPR_CORE_PLATE_H_
 

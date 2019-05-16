@@ -19,7 +19,6 @@ using namespace std;
 
 namespace easypr {
 
-  namespace demo {
 
     // get the groundTruth
     int getGroundTruth(map<string, vector<CPlate>>& xmlMap, const char* path) {
@@ -850,7 +849,6 @@ namespace easypr {
       }    
       return 0;
     }
-  }
 }
 
 #endif  // EASYPR_ACCURACY_HPP

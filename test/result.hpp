@@ -7,9 +7,6 @@
 Namespace where all the C++ EasyPR functionality resides
 */
 namespace easypr {
-
-  namespace demo {
-
     class Result {
 
       class Params {
@@ -197,12 +194,6 @@ namespace easypr {
 
       Params m_params;
     };
-
-    
-
-
-
-  } /*! \namespace demo*/
 
 } /*! \namespace easypr*/
 

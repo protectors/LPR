@@ -115,9 +115,6 @@
       <pointsize>70</pointsize>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
     <property name="text">
      <string/>
     </property>
@@ -133,8 +130,8 @@
      <rect>
       <x>670</x>
       <y>290</y>
-      <width>421</width>
-      <height>211</height>
+      <width>551</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="palette">
@@ -259,9 +256,6 @@
      <font>
       <pointsize>65</pointsize>
      </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>

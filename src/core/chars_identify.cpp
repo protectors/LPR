@@ -18,6 +18,7 @@ CharsIdentify* CharsIdentify::instance() {
   return instance_;
 }
 
+//构造函数---加载ann模型
 CharsIdentify::CharsIdentify() {
   LOAD_ANN_MODEL(ann_, kDefaultAnnPath);
   LOAD_ANN_MODEL(annChinese_, kChineseAnnPath);
@@ -29,6 +30,7 @@ CharsIdentify::CharsIdentify() {
   extractFeature = getGrayPlusProject;
 }
 
+//加载模型
 void CharsIdentify::LoadModel(std::string path) {
   if (path != std::string(kDefaultAnnPath)) {
     if (!ann_->empty())
